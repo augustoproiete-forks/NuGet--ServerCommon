@@ -942,9 +942,13 @@ Function Install-PrivateBuildTools() {
 
     if (-Not (Test-Path $PrivateRoot)) {
         git init $PrivateRoot
+        Trace-Log "git init done"
         git -C $PrivateRoot remote add origin $repository
+        Trace-Log "Added remote"
     }
 
     git -C $PrivateRoot fetch *>&1 | Out-Null
+    Trace-Log "finished git fetch"
     git -C $PrivateRoot reset --hard $commit
+    Trace-Log "finished git reset"
 }
