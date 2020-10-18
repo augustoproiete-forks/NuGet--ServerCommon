@@ -947,7 +947,9 @@ Function Install-PrivateBuildTools() {
         Trace-Log "Added remote"
     }
 
-    git -C $PrivateRoot fetch 2>&1
+    $output = git -C $PrivateRoot fetch 2>&1
+    Trace-Log "git fetch result code: $LASTEXITCODE"
+    Trace-Log "git fetch output: $output"
     Trace-Log "finished git fetch"
     git -C $PrivateRoot reset --hard $commit
     Trace-Log "finished git reset"
